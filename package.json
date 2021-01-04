@@ -1,0 +1,23 @@
+{
+  "name": "practica-intro-javascript",
+  "version": "1.0.0",
+  "description": "Práctica de mundial de fútbol.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "request": "^2.88.2"
+  }
+}
