@@ -10,8 +10,7 @@ try {
     
     mundial.startMundial();
 
-
-   mundial.displayEliminatorias();
+    mundial.displayEliminatorias();
  
 } catch (error) {
     console.error('ERROR', error)

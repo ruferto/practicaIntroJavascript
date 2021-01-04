@@ -17,9 +17,9 @@ export default class Mundial {
 
         const grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
-        const tam = letras.length;
+        const tam = teams.length/letras.length;
         for(let i=0; i<letras.length; i++){
-            grupos.push({letter: letras[i], groupTeams: teams.slice(i*tam/2,(i+1)*(tam/2))});
+            grupos.push({letter: letras[i], groupTeams: teams.slice(i*tam,(i+1)*tam)});
         }
         return grupos;
     }

@@ -1,15 +1,5 @@
 import axios from 'axios'
 
-// export const paises = [
-//     "Argelia-A","Argentina-A","Australia-A", "Bélgica-A",
-//     "Brasil-B","Camerún-B","Canadá-B","Chile-B",
-//     "China-C", "Chipre-C", "Corea del Sur-C", "Ecuador-C",
-//     "España-D", "Grecia-D","Italia-D","Jamaica-D",
-//     "Japón-E", "Latveria-E", "Méjico-E", "Nigeria-E",
-//     "Nueva Zelanda-F", "Perú-F", "Palombia-F","Symkaria-F",
-//     "Portugal-G", "Rumanía-G", "Rusia-G", "Sudáfrica-G",
-//     "Turquía-H", "Vietnam-H","Wakanda-H", "Zimbabue-H"
-// ]
 export const paises = [
     "Argelia","Argentina","Australia", "Bélgica",
     "Brasil","Camerún","Canadá","Chile",
