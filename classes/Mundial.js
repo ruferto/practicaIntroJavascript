@@ -15,9 +15,13 @@ export default class Mundial {
 
     initGroups(teams){
 
-        const grupos=[];
+        // Arroja un error si hay menos del mínimo para un mundial.
+        if(teams.length<16) throw "No hay suficientes equipos.";
+        
+        let grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
         const tam = teams.length/letras.length;
+        // Se dividen los equipos entre los grupos
         for(let i=0; i<letras.length; i++){
             grupos.push({letter: letras[i], groupTeams: teams.slice(i*tam,(i+1)*tam)});
         }
@@ -35,7 +39,7 @@ export default class Mundial {
             })
             console.log('');
             liga.scheduleMatchDays()
-            // Mostramos por pantala las jornadas y sus partidos
+            // Mostramos por pantalla las jornadas y sus partidos.
             liga.displayMatches();
 
             liga.start();
@@ -72,9 +76,11 @@ export default class Mundial {
 
         if(mitad>=1){
 
-            if(eliminatorias.partidos.length==0){ // Primera ronda de eliminatorias
-                for(let k=0; k<eliminatorias.equipos.length-1; k++){            // Se reparten partidos de manera distinta
-                    
+            if(eliminatorias.partidos.length==0){
+                // Primera ronda de eliminatorias.
+                // Se reparten los partidos de manera distinta.
+                for(let k=0; k<eliminatorias.equipos.length-1; k++){
+                    // Los primeros de un grupo con los segundos del adyacente, etc.
                     if(k%2==0){
                         eliminatorias.partidos.push([eliminatorias.equipos[k], eliminatorias.equipos[k+3]]);
                     }else{
@@ -84,6 +90,8 @@ export default class Mundial {
 
                 }
 
+                // Se "colocan" en dos "lados" para que los equipos que se hayan
+                // encontrado no vuelvan a hacerlo hasta la final.
                 for(let i=1; i<(eliminatorias.partidos.length/2); i+=2){
                     let aux = eliminatorias.partidos[i];
                     eliminatorias.partidos[i]=eliminatorias.partidos[i+mitad/2];
