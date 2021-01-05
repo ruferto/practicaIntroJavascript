@@ -1,10 +1,10 @@
-import { paises, getTeamsFromGithub, getTeamsWithPromise } from './teams.js'
+import { getCountriesFromGithub } from './teams.js'
 import Mundial from './classes/Mundial.js'
 
 
 try {
-    const teams = await getTeamsWithPromise()
-    const premierLeagueTeams = teams.map(team => team.name)
+    const paisesPre = await getCountriesFromGithub()
+    const paises = paisesPre.map(paisesPre => paisesPre.country)
   
     const mundial = new Mundial("Mundial", paises);
     

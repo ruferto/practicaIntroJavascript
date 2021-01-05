@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const paises = [
+const paisesB = [
     "Argelia","Argentina","Australia", "Bélgica",
     "Brasil","Camerún","Canadá","Chile",
     "China", "Chipre", "Corea del Sur", "Ecuador",
@@ -11,20 +11,22 @@ export const paises = [
     "Turquía", "Vietnam","Wakanda", "Zimbabue"
 ]
 
-export async function getTeamsFromGithub() {
-    const url = 'https://raw.githubusercontent.com/openfootball/football.json/master/2020-21/en.1.clubs.json'
-    const response = await axios.get(url)
-    return response.data.clubs
+export async function getCountriesFromGithub() {
+    try{
+        const url = 'https://raw.githubusercontent.com/usuario616/repoTest/main/paises.json';
+        const response = await axios.get(url);
+        return response.data;
+    }catch{
+        //Si el repo está caído o lo que sea.
+        const otrosPaises=[];
+        paisesB.forEach( pais => {
+            otrosPaises.push({country: pais});
+        })
+        console.warn("Aviso: No se pudo obtener los países desde el repositorio.\nSe recogen desde una lista local");
+        return otrosPaises;
+        
+    }
+    
 }
 
-export function getTeamsWithPromise() {
-    const url = 'https://raw.githubusercontent.com/openfootball/football.json/master/2020-21/en.1.clubs.json'
-    return new Promise(function(resolve, reject) {
-        axios.get(url).then(function(response) {
-            resolve(response.data.clubs)
-        }, function(error) {
-            reject(error)
-        })
-    })
-}
    
