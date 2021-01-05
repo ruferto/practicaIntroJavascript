@@ -154,24 +154,6 @@ export default class League {
         return newRound
     }
 
-    scheduleMatchDays2() {
-        const newRound = this.createRound()
-        const i = 1
-        this.matchDaySchedule = this.matchDaySchedule.concat(newRound)
-        const secondRound = this.matchDaySchedule.map(matchDay => {
-            return matchDay.map(match => {
-                const newMatch = [...match]
-                if (i % 2 != 0) {
-                    const localTEam = newMatch[LOCAL_TEAM]
-                    newMatch[LOCAL_TEAM] = newMatch[AWAY_TEAM]
-                    newMatch[AWAY_TEAM] = localTEam
-                }
-                return newMatch
-            })
-        })
-        this.matchDaySchedule = this.matchDaySchedule.concat(secondRound)
-    }
-
     start() {
 
         for (const matchDay of this.matchDaySchedule) {

@@ -22,7 +22,7 @@ export default class PointsBasedLeague extends League {
             points: 0,
             goalsFor: 0,
             goalsAgainst: 0,
-            winsTo:[],
+            winsTo:[], //Aquí se almacenan los equipos a los que va ganando.
             ...customizedTeam
         }
     }
@@ -115,7 +115,7 @@ export default class PointsBasedLeague extends League {
                 return -1
             } else if (teamA.points < teamB.points) {
                 return 1
-            } else { // empatan a puntos
+            } else { // Empatan a puntos.
 
                 if(teamA.winsTo.find( team => team == teamB.name))
                 {
@@ -123,14 +123,14 @@ export default class PointsBasedLeague extends League {
                 }else if(teamB.winsTo.find( team => team == teamA.name))
                 {
                     return 1
-                }else{
+                }else{ // Ningún equipo ha ganado al otro.
                     const goalsDiffA = teamA.goalsFor - teamA.goalsAgainst;
                     const goalsDiffB = teamB.goalsFor - teamB.goalsAgainst;
                     if (goalsDiffA > goalsDiffB) {
                         return -1;
                     } else if (goalsDiffA < goalsDiffB) {
                         return 1;
-                    } else {
+                    } else { // También empatan en diferencia de goles.
                         return teamA.name.localeCompare(teamB.name);
                                 
                     }
@@ -140,7 +140,7 @@ export default class PointsBasedLeague extends League {
     }
 
     displayResults(i){
-
+                // Muestra resultados para el número de jornada recibido.
                 const summary = this.summaries[i];
                 console.log(`\nGrupo ${this.name} Jornada ${i+1}\n----------------------`)
                 summary.results.forEach(result => {
