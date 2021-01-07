@@ -3,8 +3,8 @@ import Mundial from './classes/Mundial.js'
 
 
 try {
-    const paisesPre = await getCountriesFromGithub()
-    const paises = paisesPre.map(paisesPre => paisesPre.country)
+    const paises = await getCountriesFromGithub()
+    //const paises = paisesPre.map(paisesPre => paisesPre.country)
   
     const mundial = new Mundial("Mundial", paises);
     

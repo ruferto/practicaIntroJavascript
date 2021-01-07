@@ -15,7 +15,9 @@ export async function getCountriesFromGithub() {
     try{
         const url = 'https://raw.githubusercontent.com/usuario616/repoTest/main/paises.json';
         const response = await axios.get(url);
-        return response.data;
+        const paises=response.data.map( pais => pais.country );
+        
+        return paises;
     }catch{
         //Si el repo está caído o lo que sea.
         const otrosPaises=[];
