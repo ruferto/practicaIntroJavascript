@@ -17,6 +17,7 @@ export default class Mundial {
 
         // Arroja un error si hay menos del mínimo para un mundial.
         if(teams.length<16) throw "No hay suficientes equipos.";
+        if(teams.length%8!=0) throw "El número de  equipos no es múltiplo de 8.";
         
         let grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
