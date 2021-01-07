@@ -59,8 +59,8 @@ export default class Mundial {
                 liga.displayResults(i);
                 // Mostramos el total de goles y el total de puntos en la última jornada,
                 // así como los equipos seleccionados.
-                if(i==numJornadas){
-                    // Muestra los totales en la última jornada.
+                if(i==numJornadas-1){
+                    // En la última jornada muestra los totales y los seleccionados.
                     liga.displayTotals();
                     console.log(`Seleccionados: ${liga.teams[0].name} y ${liga.teams[1].name} para el mundial`);
                 }
