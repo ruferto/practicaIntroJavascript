@@ -13,19 +13,17 @@ const paisesB = [
 
 export async function getCountriesFromGithub() {
     try{
+
         const url = 'https://raw.githubusercontent.com/usuario616/repoTest/main/paises.json';
         const response = await axios.get(url);
         const paises=response.data.map( pais => pais.country );
-        
         return paises;
+
     }catch{
+        
         //Si el repo está caído o lo que sea.
-        const otrosPaises=[];
-        paisesB.forEach( pais => {
-            otrosPaises.push({country: pais});
-        })
         console.warn("Aviso: No se pudo obtener los países desde el repositorio.\nSe recogen desde una lista local");
-        return otrosPaises;
+        return paisesB;
         
     }
     
