@@ -17,7 +17,6 @@ export default class Mundial {
 
         // Arroja un error si hay menos del mínimo para un mundial.
         if(teams.length<16) throw "No hay suficientes equipos.";
-        if(teams.length%8!=0) throw "El número de  equipos no es múltiplo de 8.";
         
         let grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
@@ -53,14 +52,15 @@ export default class Mundial {
 
         // mostrar por pantalla los resultados de cada jornada y la clasificación
 
-        const numJornadas = this.ligas[0].summaries.length;
+        const numJornadas = this.ligas[0].summaries.length+1; //Mas uno para cuando el número de equipos no sea múltiplo de 8.
 
         for(let i=0; i<numJornadas; i++){
             this.ligas.forEach( liga => {
-                liga.displayResults(i);
+                if(liga.summaries[i])
+                    liga.displayResults(i);
                 // Mostramos el total de goles y el total de puntos en la última jornada,
                 // así como los equipos seleccionados.
-                if(i==numJornadas-1){
+                if(i==liga.summaries.length-1){
                     // En la última jornada muestra los totales y los seleccionados.
                     liga.displayTotals();
                     console.log(`Seleccionados: ${liga.teams[0].name} y ${liga.teams[1].name} para el mundial`);

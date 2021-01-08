@@ -83,9 +83,10 @@ export default class PointsBasedLeague extends League {
             this.matchDaySchedule.forEach(matchDay => {
                 console.log(`JORNADA ${i}`)
                 matchDay.forEach(match => {
-                    const home = match[0] != null ? match[0] : 'DESCANSA'
-                    const away = match[1] != null ? match[1] : 'DESCANSA'
-                    console.log(`${home} vs ${away}`)
+                    if(match[0] && match[1])
+                        console.log(`${match[0]} vs ${match[1]}`);
+                    else
+                        console.log(`-->${match[0] ? match[0] : match[1]} descansa`);
                 })
                 i++
             })
@@ -144,7 +145,8 @@ export default class PointsBasedLeague extends League {
                 const summary = this.summaries[i];
                 console.log(`\nGrupo ${this.name} Jornada ${i+1}\n----------------------`)
                 summary.results.forEach(result => {
-                    console.log(`${result.homeTeam} ${result.homeGoals} - ${result.awayGoals} ${result.awayTeam}`)
+                    if(result.homeTeam && result.awayTeam)
+                        console.log(`${result.homeTeam} ${result.homeGoals} - ${result.awayGoals} ${result.awayTeam}`)
                 })
                 console.table(summary.standings.map(team => {
                     return {
