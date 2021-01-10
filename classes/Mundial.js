@@ -63,7 +63,7 @@ export default class Mundial {
                 if(i==liga.summaries.length-1){
                     // En la última jornada muestra los totales y los seleccionados.
                     liga.displayTotals();
-                    console.log(`Seleccionados: ${liga.teams[0].name} y ${liga.teams[1].name} para el mundial`);
+                    console.log(`Seleccionados para el mundial: ${liga.teams[0].name} y ${liga.teams[1].name}`);
                 }
             })
             

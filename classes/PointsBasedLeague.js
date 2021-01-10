@@ -104,7 +104,7 @@ export default class PointsBasedLeague extends League {
              return accumulator
          }, initialAccumulator)
 
-         console.log('TOTALS', totals)
+         console.log(`TOTALES para el grupo ${this.name} - Total de goles: ${totals.totalGoals} - Total de puntos: ${totals.totalPoints}`)
     }
     
     getStandings() {
