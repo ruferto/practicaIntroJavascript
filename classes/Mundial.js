@@ -20,9 +20,9 @@ export default class Mundial {
         
         let grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
-        const tam = teams.length/letras.length;
+        const tam = teams.length/8;//letras.length;
         // Se dividen los equipos entre los grupos
-        for(let i=0; i<letras.length; i++){
+        for(let i=0; i<8/*letras.length*/; i++){
             grupos.push({letter: letras[i], groupTeams: teams.slice(i*tam,(i+1)*tam)});
         }
         return grupos;
@@ -63,7 +63,7 @@ export default class Mundial {
                 if(i==liga.summaries.length-1){
                     // En la última jornada muestra los totales y los seleccionados.
                     liga.displayTotals();
-                    console.log(`Seleccionados para el mundial: ${liga.teams[0].name} y ${liga.teams[1].name}`);
+                    console.log(`Seleccionados para el mundial: ${liga.teams[0].name} y ${liga.teams[1].name}.`);
                 }
             })
             
@@ -156,13 +156,23 @@ export default class Mundial {
                     nombre="N LAS SEMIFINALES!!";
                     break;
                 case 1:
-                    nombre=" LA FINAL!!";      
+                    nombre=" LA FINAL!!";   
+                    break;
+                default:
+                    nombre=" LA RONDA!!"   
             }
             if(tam >1){
             
                 console.log(`\n========¡¡COMIENZA${nombre}========`);
+                let equiposCadena = '';
 
-                console.log(`Compiten los equipos: ${aux.equipos}\n`);
+                for(let i=0; i<aux.equipos.length; i++){
+                    equiposCadena+=aux.equipos[i]+(i!=aux.equipos.length-2 ? ', ' : ' y ');
+                }
+                // Quitar la última coma.
+                equiposCadena = equiposCadena.slice(0, equiposCadena.length-2);
+                equiposCadena+='.';
+                console.log(`Compiten los equipos: ${equiposCadena}\n`);
                 aux.partidos.forEach( partido => {
                     console.log(`${partido[0]} Vs ${partido[1]} \t\t===>  gana ${partido[2]}`);
                 });

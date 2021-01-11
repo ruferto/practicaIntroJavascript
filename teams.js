@@ -4,10 +4,10 @@ const paisesB = [
     "Argelia","Argentina","Australia", "Bélgica",
     "Brasil","Camerún","Canadá","Chile",
     "China", "Chipre", "Corea del Sur", "Ecuador",
-    "España", "Grecia","Italia","Jamaica",
+    "España", "Grecia", "Italia", "Jamaica",
     "Japón", "Latveria", "Méjico", "Nigeria",
-    "Nueva Zelanda", "Perú", "Palombia","Symkaria",
-    "Portugal", "Rumanía", "Rusia", "Sudáfrica",
+    "Nueva Zelanda", "Perú", "Palombia", "Symkaria",
+    "Portugal", "Rumania", "Rusia", "Sudáfrica",
     "Turquía", "Vietnam","Wakanda", "Zimbabue"
 ]
 
