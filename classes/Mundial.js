@@ -17,7 +17,7 @@ export default class Mundial {
 
         const letras = ['A','B','C','D','E','F','G','H'];
         
-        if((Math.log(letras.length)/Math.log(2)) % 1 != 0) throw ("El número de grupos no es potencia de 2.") // Arroja error si... bueno, lo que dice.
+        if((Math.log(letras.length)/Math.log(2)) % 1 != 0 || letras.length < 2) throw ("El número de grupos debe ser mayor que 1 y potencia de 2.") // Arroja error si... bueno, lo que dice.
         if(teams.length<letras.length*2) throw "No hay suficientes equipos."; // Arroja error si hay menos del mínimo para un mundial.
 
         let grupos=[];
