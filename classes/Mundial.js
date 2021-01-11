@@ -15,14 +15,15 @@ export default class Mundial {
 
     initGroups(teams){
 
-        // Arroja un error si hay menos del mínimo para un mundial.
-        if(teams.length<16) throw "No hay suficientes equipos.";
-        
-        let grupos=[];
         const letras = ['A','B','C','D','E','F','G','H'];
-        const tam = teams.length/8;//letras.length;
+        
+        if((Math.log(letras.length)/Math.log(2)) % 1 != 0) throw ("El número de grupos no es potencia de 2.") // Arroja error si... bueno, lo que dice.
+        if(teams.length<letras.length*2) throw "No hay suficientes equipos."; // Arroja error si hay menos del mínimo para un mundial.
+
+        let grupos=[];
+        const tam = teams.length/letras.length;
         // Se dividen los equipos entre los grupos
-        for(let i=0; i<8/*letras.length*/; i++){
+        for(let i=0; i<letras.length; i++){
             grupos.push({letter: letras[i], groupTeams: teams.slice(i*tam,(i+1)*tam)});
         }
         return grupos;
