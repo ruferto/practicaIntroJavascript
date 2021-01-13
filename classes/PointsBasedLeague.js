@@ -108,8 +108,6 @@ export default class PointsBasedLeague extends League {
     }
     
     getStandings() {
-        let partido=undefined;
-        let sumarios = this.summaries;
 
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points > teamB.points) {
@@ -140,10 +138,10 @@ export default class PointsBasedLeague extends League {
         })
     }
 
-    displayResults(i){
+    displayResults(numJornada){
                 // Muestra resultados para el número de jornada recibido.
-                const summary = this.summaries[i];
-                console.log(`\nGrupo ${this.name} Jornada ${i+1}\n----------------------`)
+                const summary = this.summaries[numJornada];
+                console.log(`\nGrupo ${this.name} Jornada ${numJornada+1}\n----------------------`)
                 summary.results.forEach(result => {
                     if(result.homeTeam && result.awayTeam)
                         console.log(`${result.homeTeam} ${result.homeGoals} - ${result.awayGoals} ${result.awayTeam}`)
