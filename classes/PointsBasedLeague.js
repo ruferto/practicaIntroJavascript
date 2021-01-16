@@ -109,7 +109,7 @@ export default class PointsBasedLeague extends League {
     }
     
     getStandings() {
-        //const teams2=this.teams.map(equipo => equipo);
+        // Ver que equipos han empatado en puntos
         const miniLigaAux = [];
         const miniLiga = [];
         let puntos =[];
@@ -126,6 +126,7 @@ export default class PointsBasedLeague extends League {
         }
         })
 
+        // Preparar miniliga entre los equipos empatados.
         puntos=new Set(puntos);
 
         let i=0;
@@ -139,7 +140,8 @@ export default class PointsBasedLeague extends League {
             });
             i++;
         });
-         
+        
+        // En la miniliga se cuentan los partidos ganados entre ellos.
         miniLiga.forEach( resultado => {
             let nombres =[];
             resultado.equipos.forEach( result => {
@@ -156,20 +158,18 @@ export default class PointsBasedLeague extends League {
             })
         })
         
+        // Y a ordenar se ha dicho.
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points > teamB.points) {
                 return -1
             } else if (teamA.points < teamB.points) {
                 return 1
             } else { // Empatan a puntos.
-
-                if(teamA.miniOrder > teamB.miniOrder)
+                if(teamA.miniOrder > teamB.miniOrder){
                 //if(teamA.winsTo.find( team => team == teamB.name))
-                {
                     return -1
-                }else if(teamA.miniOrder < teamB.miniOrder)
+                }else if(teamA.miniOrder < teamB.miniOrder){
                 //}else if(teamB.winsTo.find( team => team == teamA.name))
-                {
                     return 1
                 }else{ // Ningún equipo ha ganado al otro.
                     const goalsDiffA = teamA.goalsFor - teamA.goalsAgainst;
@@ -179,8 +179,7 @@ export default class PointsBasedLeague extends League {
                     } else if (goalsDiffA < goalsDiffB) {
                         return 1;
                     } else { // También empatan en diferencia de goles.
-                        return teamA.name.localeCompare(teamB.name);
-                                
+                        return teamA.name.localeCompare(teamB.name);  
                     }
                 }
             }
