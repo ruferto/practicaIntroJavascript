@@ -107,8 +107,9 @@ export default class PointsBasedLeague extends League {
 
          console.log(`TOTALES para el grupo ${this.name} - Total de goles: ${totals.totalGoals} - Total de puntos: ${totals.totalPoints}`)
     }
-    
-    getStandings() {
+
+    setMiniLeagueOrders(){
+
         // Ver que equipos han empatado en puntos
         const miniLigaAux = [];
         const miniLiga = [];
@@ -150,10 +151,16 @@ export default class PointsBasedLeague extends League {
             resultado.equipos.forEach( equipo => {
                 equipo.winsTo.forEach( item => {
                     equipo.miniOrder += nombres.includes(item) ? 1 : 0;
-                })
-            })
-        })
+                });
+            });
+        });
+    }
+    
+    getStandings() {
         
+        //"Mini liga" para obtener orden para los empates
+        this.setMiniLeagueOrders();
+
         // Y a ordenar se ha dicho.
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points > teamB.points) {
