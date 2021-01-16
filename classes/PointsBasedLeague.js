@@ -115,16 +115,12 @@ export default class PointsBasedLeague extends League {
         let puntos =[];
 
         this.teams.sort(function(teamA, teamB) {
-            if (teamA.points > teamB.points) {
-                return -1;
-            } else if (teamA.points < teamB.points) {
-                return 1;
-            }else{
+            if (teamA.points === teamB.points) {
                 miniLigaAux.push(teamA, teamB);
                 puntos.push(teamA.points);
                 return 0;
-        }
-        })
+            }
+        });
 
         // Preparar miniliga entre los equipos empatados.
         puntos=new Set(puntos);
@@ -161,16 +157,16 @@ export default class PointsBasedLeague extends League {
         // Y a ordenar se ha dicho.
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points > teamB.points) {
-                return -1
+                return -1;
             } else if (teamA.points < teamB.points) {
-                return 1
+                return 1;
             } else { // Empatan a puntos.
                 if(teamA.miniOrder > teamB.miniOrder){
                 //if(teamA.winsTo.find( team => team == teamB.name))
-                    return -1
+                    return -1;
                 }else if(teamA.miniOrder < teamB.miniOrder){
                 //}else if(teamB.winsTo.find( team => team == teamA.name))
-                    return 1
+                    return 1;
                 }else{ // Ningún equipo ha ganado al otro.
                     const goalsDiffA = teamA.goalsFor - teamA.goalsAgainst;
                     const goalsDiffB = teamB.goalsFor - teamB.goalsAgainst;
