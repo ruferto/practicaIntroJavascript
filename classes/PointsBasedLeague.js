@@ -140,8 +140,6 @@ export default class PointsBasedLeague extends League {
             i++;
         });
          
-         
-
         miniLiga.forEach( resultado => {
             let nombres =[];
             resultado.equipos.forEach( result => {
