@@ -23,6 +23,7 @@ export default class PointsBasedLeague extends League {
             goalsFor: 0,
             goalsAgainst: 0,
             winsTo:[], //Aquí se almacenan los equipos a los que va ganando.
+            miniOrder: 0,
             ...customizedTeam
         }
     }
@@ -108,7 +109,55 @@ export default class PointsBasedLeague extends League {
     }
     
     getStandings() {
+        //const teams2=this.teams.map(equipo => equipo);
+        const miniLigaAux = [];
+        const miniLiga = [];
+        let puntos =[];
 
+        this.teams.sort(function(teamA, teamB) {
+            if (teamA.points > teamB.points) {
+                return -1;
+            } else if (teamA.points < teamB.points) {
+                return 1;
+            }else{
+                miniLigaAux.push(teamA, teamB);
+                puntos.push(teamA.points);
+                return 0;
+        }
+        })
+
+        puntos=new Set(puntos);
+
+        let i=0;
+        puntos.forEach( puntuacion => {
+            miniLiga[i] = { puntuacion, equipos: [] } ;
+            miniLigaAux.filter( team => team.points == puntuacion).forEach( teamMini => {
+                teamMini.miniOrder=0;
+                if(!miniLiga[i].equipos.includes( teamMini )){
+                    miniLiga[i].equipos.push( teamMini );
+                }
+            });
+            i++;
+        });
+         
+         
+
+        miniLiga.forEach( resultado => {
+            let nombres =[];
+            resultado.equipos.forEach( result => {
+                result.miniOrder=0;
+                if(!nombres.includes(result.name)){
+                    nombres.push(result.name);
+                }
+            });
+
+            resultado.equipos.forEach( equipo => {
+                equipo.winsTo.forEach( item => {
+                    equipo.miniOrder += nombres.includes(item) ? 1 : 0;
+                })
+            })
+        })
+        
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points > teamB.points) {
                 return -1
@@ -116,10 +165,12 @@ export default class PointsBasedLeague extends League {
                 return 1
             } else { // Empatan a puntos.
 
-                if(teamA.winsTo.find( team => team == teamB.name))
+                if(teamA.miniOrder > teamB.miniOrder)
+                //if(teamA.winsTo.find( team => team == teamB.name))
                 {
                     return -1
-                }else if(teamB.winsTo.find( team => team == teamA.name))
+                }else if(teamA.miniOrder < teamB.miniOrder)
+                //}else if(teamB.winsTo.find( team => team == teamA.name))
                 {
                     return 1
                 }else{ // Ningún equipo ha ganado al otro.
@@ -150,7 +201,9 @@ export default class PointsBasedLeague extends League {
                     return {
                         Equipo: team.name,
                         Puntos: team.points,
+                        Ganados: team.matchesWon,
                         GolesAFavor: team.goalsFor,
+                        orderMini: team.miniOrder,
                         GolesEnContra: team.goalsAgainst,
                         Diferencia: team.goalsFor - team.goalsAgainst
                     }
