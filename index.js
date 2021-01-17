@@ -4,7 +4,7 @@ import Mundial from './classes/Mundial.js'
 
 try {
     const paises = await getCountriesFromGithub();
-    //const paises = await getCountriesFromCountryAPI(42)
+    //const paises = await getCountriesFromCountryAPI(42); // Número de países como parámetro. 0 para todos.
   
     const mundial = new Mundial("Mundial", paises);
     

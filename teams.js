@@ -31,11 +31,12 @@ export async function getCountriesFromGithub() {
 
 export async function getCountriesFromCountryAPI(num=0) {
     try{
-        const limite = num>0 ? `?pLimit=${num}` : ``;
-        const url = `http://countryapi.gear.host/v1/Country/getCountries${limite}`;
+        const url = `http://countryapi.gear.host/v1/Country/getCountries`;
         const response = await axios.get(url);
         //console.log(response.data.Response);
-        const paises=response.data.Response.map( pais => pais.Name );
+        const prePaises=response.data.Response.map( pais => pais.Name );
+        prePaises.shuffle();
+        const paises = num>0 ? prePaises.slice(0,num) : prePaises;
         return paises;
 
     }catch{
