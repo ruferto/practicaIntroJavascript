@@ -202,8 +202,8 @@ export default class PointsBasedLeague extends League {
                         Equipo: team.name,
                         Puntos: team.points,
                         Ganados: team.matchesWon,
-                        GolesAFavor: team.goalsFor,
                         MiniLiga: team.miniOrder,
+                        GolesAFavor: team.goalsFor,
                         GolesEnContra: team.goalsAgainst,
                         Diferencia: team.goalsFor - team.goalsAgainst
                     }
