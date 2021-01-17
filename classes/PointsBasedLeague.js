@@ -118,16 +118,16 @@ export default class PointsBasedLeague extends League {
         this.teams.sort(function(teamA, teamB) {
             if (teamA.points === teamB.points) {
                 miniLigaAux.push(teamA, teamB);
-                puntos.push(teamA.points);
+                puntos.push(teamA.points); // Recoge las puntuaciones con las que empatan.
                 return 0;
             }
         });
 
         // Preparar miniliga entre los equipos empatados.
-        puntos=new Set(puntos);
+        puntos=new Set(puntos); // Elimina valores duplicados.
 
         let i=0;
-        puntos.forEach( puntuacion => {
+        puntos.forEach( puntuacion => { // Para cada puntuación, se recogen los equipos que la tienen.
             miniLiga[i] = { puntuacion, equipos: [] } ;
             miniLigaAux.filter( team => team.points == puntuacion).forEach( teamMini => {
                 teamMini.miniOrder=0;
@@ -174,7 +174,7 @@ export default class PointsBasedLeague extends League {
                 }else if(teamA.miniOrder < teamB.miniOrder){
                 //}else if(teamB.winsTo.find( team => team == teamA.name))
                     return 1;
-                }else{ // Ningún equipo ha ganado al otro.
+                }else{ // Tienen la misma puntuación en la "mini liga".
                     const goalsDiffA = teamA.goalsFor - teamA.goalsAgainst;
                     const goalsDiffB = teamB.goalsFor - teamB.goalsAgainst;
                     if (goalsDiffA > goalsDiffB) {
