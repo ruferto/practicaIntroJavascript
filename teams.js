@@ -29,10 +29,10 @@ export async function getCountriesFromGithub() {
     
 }
 
-export async function getCountriesFromCountryAPI() {
+export async function getCountriesFromCountryAPI(num=0) {
     try{
-
-        const url = 'http://countryapi.gear.host/v1/Country/getCountries';
+        const limite = num>0 ? `?pLimit=${num}` : ``;
+        const url = `http://countryapi.gear.host/v1/Country/getCountries${limite}`;
         const response = await axios.get(url);
         //console.log(response.data.Response);
         const paises=response.data.Response.map( pais => pais.Name );

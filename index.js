@@ -1,9 +1,10 @@
-import { getCountriesFromGithub } from './teams.js'
+import { getCountriesFromGithub, getCountriesFromCountryAPI } from './teams.js'
 import Mundial from './classes/Mundial.js'
 
 
 try {
     const paises = await getCountriesFromGithub();
+    //const paises = await getCountriesFromCountryAPI(42)
   
     const mundial = new Mundial("Mundial", paises);
     
